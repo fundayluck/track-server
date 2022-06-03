@@ -1,5 +1,6 @@
 require("./models/User");
 require("./models/Track");
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -13,8 +14,7 @@ app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(trackRoutes);
 
-const mongoUri =
-  "mongodb+srv://admin:Laksono07@cluster0.hlnsm9i.mongodb.net/?retryWrites=true&w=majority";
+const mongoUri = process.env.MONGODB_URI;
 mongoose.connect(mongoUri);
 mongoose.connection.on("connected", () => {
   console.log("connected to mongoDB");
